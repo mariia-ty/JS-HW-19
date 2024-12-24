@@ -1,30 +1,22 @@
-// Select necessary DOM elements
+//Task 1 -- Modal refuses to work!
 const openModalBtn = document.querySelector('[data-action="open-modal"]');
 const closeModalBtn = document.querySelector('[data-action="close-modal"]');
 const backdrop = document.querySelector(".backdrop");
 
-// Function to close the modal on backdrop click
+function openModal() {
+  document.body.classList.add("show-modal");
+}
+
+function closeModal() {
+  document.body.classList.remove("show-modal");
+}
+
 function onBackdropClick(event) {
   if (event.target === backdrop) {
-    document.body.classList.remove("show-modal");
+    closeModal();
   }
 }
 
-// Add event listeners
-openModalBtn.addEventListener("click", () => {
-  document.body.classList.add("show-modal");
-});
-closeModalBtn.addEventListener("click", () => {
-  document.body.classList.remove("show-modal");
-});
-backdrop.addEventListener("click", onBackdropClick);
+openModalBtn.addEventListener("click", openModal);
+closeModalBtn.addEventListener("click", closeModal);
 
-// Close the modal when pressing the Escape key
-document.addEventListener("keydown", (event) => {
-  if (
-    event.key === "Escape" &&
-    document.body.classList.contains("show-modal")
-  ) {
-    document.body.classList.remove("show-modal");
-  }
-});
